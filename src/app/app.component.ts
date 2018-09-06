@@ -13,5 +13,10 @@ export class AppComponent {
 
   onSubmit(form: NgForm) {
     console.log(form);
+    // Will be false if no input is added
+    console.log(form.dirty);
+
+    // Form value based on name we set as attribute
+    console.log(form.value);
   }
 }
