@@ -9,6 +9,9 @@ import { NgForm } from '@angular/forms';
 export class AppComponent {
   @ViewChild('f')
   form: NgForm;
+
+  @ViewChild('email')
+  // email: NgModel;
   suggestUserName() {
     const suggestedName = 'Superuser';
   }
@@ -29,5 +32,6 @@ export class AppComponent {
 
       // this.form value based on name we set as attribute
       console.log(this.form.value);
+      // console.log();
   }
 }
