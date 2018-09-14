@@ -10,6 +10,7 @@ export class AppComponent {
   @ViewChild('f')
   form: NgForm;
 
+  defaultQuestion = 'pet';
   @ViewChild('email')
   // email: NgModel;
   suggestUserName() {
