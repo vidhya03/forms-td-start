@@ -33,6 +33,7 @@ export class AppComponent {
 
       // this.form value based on name we set as attribute
       console.log(this.form.value);
+      console.log(this.form.controls.userData.controls.email);
       // console.log();
   }
 }
