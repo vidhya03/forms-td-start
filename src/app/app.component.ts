@@ -11,10 +11,20 @@ export class AppComponent {
   form: NgForm;
 
   defaultQuestion = 'pet';
-  @ViewChild('email')
+
+  genders = ['male', 'female'];
   // email: NgModel;
   suggestUserName() {
     const suggestedName = 'Superuser';
+    this.form.setValue({
+      userData : {
+        username : 'vidhya',
+        email: 'test@test.com'
+      },
+      gender: 'male',
+      secret : this.defaultQuestion,
+      questionAnswer: 'Dolly'
+    });
   }
 
   // onSubmit(form: NgForm) {
@@ -28,12 +38,12 @@ export class AppComponent {
 
   onSubmit() {
     console.log(this.form);
-      // Will be false if no input is added
-      console.log(this.form.dirty);
+    // Will be false if no input is added
+    console.log(this.form.dirty);
 
-      // this.form value based on name we set as attribute
-      console.log(this.form.value);
-      console.log(this.form.controls.userData.controls.email);
-      // console.log();
+    // this.form value based on name we set as attribute
+    console.log(this.form.value);
+
+    // console.log();
   }
 }
