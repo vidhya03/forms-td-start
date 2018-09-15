@@ -8,7 +8,7 @@ import { NgForm } from '@angular/forms';
 })
 export class AppComponent {
   @ViewChild('f')
-  form: NgForm;
+  signupForm: NgForm;
 
   defaultQuestion = 'pet';
 
@@ -16,14 +16,22 @@ export class AppComponent {
   // email: NgModel;
   suggestUserName() {
     const suggestedName = 'Superuser';
-    this.form.setValue({
+
+    // This is not the best approch
+    // this.form.setValue({
+    //   userData : {
+    //     username : 'vidhya',
+    //     email: 'test@test.com'
+    //   },
+    //   gender: 'male',
+    //   secret : this.defaultQuestion,
+    //   questionAnswer: 'Dolly'
+    // });
+
+    this.signupForm.form.patchValue({
       userData : {
-        username : 'vidhya',
-        email: 'test@test.com'
-      },
-      gender: 'male',
-      secret : this.defaultQuestion,
-      questionAnswer: 'Dolly'
+        username : 'vidhya'
+      }
     });
   }
 
@@ -37,12 +45,12 @@ export class AppComponent {
   // }
 
   onSubmit() {
-    console.log(this.form);
+    console.log(this.signupForm);
     // Will be false if no input is added
-    console.log(this.form.dirty);
+    console.log(this.signupForm.dirty);
 
     // this.form value based on name we set as attribute
-    console.log(this.form.value);
+    console.log(this.signupForm.value);
 
     // console.log();
   }
