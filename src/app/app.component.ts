@@ -1,12 +1,13 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { LoaderService } from './loader/loader.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   @ViewChild('f')
   signupForm: NgForm;
 
@@ -15,14 +16,25 @@ export class AppComponent {
   genders = ['male', 'female'];
 
   user = {
-    username: ''
-    , email: ''
-    , sercretQuestion: ''
-    , answer: ''
-    , gender: ''
+    username: '',
+    email: '',
+    sercretQuestion: '',
+    answer: '',
+    gender: ''
   };
   submitted = false;
+  showLoader = false;
   // email: NgModel;
+  constructor(private loaderService: LoaderService) {}
+  public ngOnInit(): void {
+    // Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    // Add 'implements OnInit' to the class.
+    this.loaderService.status.subscribe((val: boolean) => {
+      this.showLoader = val;
+    });
+
+    this.loaderService.display(false);
+  }
   suggestUserName() {
     const suggestedName = 'Superuser';
 
@@ -38,8 +50,8 @@ export class AppComponent {
     // });
 
     this.signupForm.form.patchValue({
-      userData : {
-        username : 'vidhya'
+      userData: {
+        username: 'vidhya'
       }
     });
   }
@@ -54,6 +66,7 @@ export class AppComponent {
   // }
 
   onSubmit() {
+    this.loaderService.display(true);
     console.log(this.signupForm);
     // Will be false if no input is added
     console.log(this.signupForm.dirty);
@@ -64,10 +77,18 @@ export class AppComponent {
     // console.log();
 
     this.user.username = this.signupForm.value.userData.username;
-    this.user.email    = this.signupForm.value.userData.email;
+    this.user.email = this.signupForm.value.userData.email;
     this.user.sercretQuestion = this.signupForm.value.secret;
     this.user.answer = this.signupForm.value.answer;
     this.user.gender = this.signupForm.value.genderData.gender;
     this.submitted = true;
+    setTimeout(() => {
+      this.signupForm.reset();
+      this.loaderService.display(false);
+    }, 4000);
   }
+}
+
+function delay(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
