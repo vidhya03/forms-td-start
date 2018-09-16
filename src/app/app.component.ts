@@ -13,6 +13,15 @@ export class AppComponent {
   defaultQuestion = 'pet';
 
   genders = ['male', 'female'];
+
+  user = {
+    username: ''
+    , email: ''
+    , sercretQuestion: ''
+    , answer: ''
+    , gender: ''
+  };
+  submitted = false;
   // email: NgModel;
   suggestUserName() {
     const suggestedName = 'Superuser';
@@ -53,5 +62,12 @@ export class AppComponent {
     console.log(this.signupForm.value);
 
     // console.log();
+
+    this.user.username = this.signupForm.value.userData.username;
+    this.user.email    = this.signupForm.value.userData.email;
+    this.user.sercretQuestion = this.signupForm.value.secret;
+    this.user.answer = this.signupForm.value.questionAnswer;
+    this.user.gender = this.signupForm.value.genderData.gender;
+    this.submitted = true;
   }
 }
