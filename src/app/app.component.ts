@@ -66,7 +66,7 @@ export class AppComponent {
     this.user.username = this.signupForm.value.userData.username;
     this.user.email    = this.signupForm.value.userData.email;
     this.user.sercretQuestion = this.signupForm.value.secret;
-    this.user.answer = this.signupForm.value.questionAnswer;
+    this.user.answer = this.signupForm.value.answer;
     this.user.gender = this.signupForm.value.genderData.gender;
     this.submitted = true;
   }
